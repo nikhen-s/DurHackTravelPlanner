@@ -1,0 +1,60 @@
+#header {
+    width: 100%;
+    text-align: center;
+    color: white;
+    height: auto;
+    padding-top: 10vh;
+    padding-bottom: 5vh;
+}
+
+#back {
+    height: 100vh;
+}
+
+
+#navbar {
+    text-align: center;
+    margin: 0 25vw 0 25vw;
+    width: 50vw;
+    font-size: 1em;
+    background-color:#440154;
+    padding: 1vh;
+    border-radius: 30px;
+}
+
+h1 {
+    margin: 5px;
+}
+
+.landingButton {
+    height: 120px;
+    font-size: 1.2em;
+    margin: 4vw 0 0 6vw;
+    background:linear-gradient(#440154,transparent);
+    background-color:#090913;
+}
+
+.landingButton:hover {
+    background:linear-gradient(#090913,transparent);
+    background-color:#440154;
+    transition: 0.3s;
+}
+
+
+#buttons {
+    background-color: #09091d;
+    text-align: center;
+    width: fit-content;
+    float: left;
+    height: 100%;
+}
+
+
+#background {
+    flex-grow: 1;
+}
+
+#container {
+    height: 78.09vh;
+    display: flex;
+}
