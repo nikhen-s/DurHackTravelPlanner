@@ -3,155 +3,85 @@ const cities = {
         weather: [15, 25, 19, 5], // [spring, summer, autumn, winter]
         coastal: true,
         cost: 'High',
-        purpose: ['Culture', 'Business', 'Tourism'],
-        experiences: {
-            culturalSites: true,
-            culinary: true,
-            nightlife: true
-        }
+        experiences: ['culturalSites', 'culinary', 'nightlife']
     },
     London: {
         weather: [10, 19, 12, 5],
         coastal: false,
         cost: 'High',
-        purpose: ['Tourism', 'Business'],
-        experiences: {
-            culturalSites: true,
-            shopping: true,
-            nightlife: true
-        }
+        experiences: ['culturalSites', 'shopping', 'nightlife']
     },
     Paris: {
         weather: [12, 22, 14, 5],
         coastal: false,
         cost: 'High',
-        purpose: ['Tourism', 'Culture'],
-        experiences: {
-            culturalSites: true,
-            culinary: true,
-            shopping: true
-        }
+        experiences: ['culturalSites', 'culinary', 'shopping']
     },
     Rome: {
         weather: [15, 27, 18, 8],
         coastal: false,
         cost: 'Medium',
-        purpose: ['Tourism', 'Business', 'Culture', 'History'],
-        experiences: {
-            culturalSites: true,
-            culinary: true,
-            nature: true
-        }
+        experiences: ['culturalSites', 'culinary', 'nature']
     },
     Bangkok: {
         weather: [30, 32, 30, 26],
         coastal: false,
         cost: 'Low',
-        purpose: ['Tourism', 'Business', 'Culture'],
-        experiences: {
-            culinary: true,
-            nightlife: true,
-            culturalSites: true
-        }
+        experiences: ['culinary', 'nightlife', 'culturalSites']
     },
     Singapore: {
         weather: [27, 28, 27, 26],
         coastal: true,
         cost: 'High',
-        purpose: ['Tourism', 'Business', 'Culture'],
-        experiences: {
-            culinary: true,
-            shopping: true,
-            entertainment: true
-        }
+        experiences: ['culinary', 'shopping', 'entertainment']
     },
     HongKong: {
         weather: [21, 28, 24, 16],
         coastal: true,
         cost: 'High',
-        purpose: ['Tourism', 'Business', 'Culture'],
-        experiences: {
-            culinary: true,
-            nightlife: true,
-            shopping: true
-        }
+        experiences: ['culinary', 'nightlife', 'shopping']
     },
     Dubai: {
         weather: [27, 36, 31, 21],
         coastal: true,
         cost: 'High',
-        purpose: ['Tourism', 'Business', 'Culture'],
-        experiences: {
-            shopping: true,
-            entertainment: true,
-            culinary: true
-        }
+        experiences: ['shopping', 'entertainment', 'culinary']
     },
     Barcelona: {
         weather: [17, 25, 19, 11],
         coastal: true,
         cost: 'Medium',
-        purpose: ['Tourism', 'Culture'],
-        experiences: {
-            culturalSites: true,
-            culinary: true,
-            nightlife: true
-        }
+        experiences: ['culturalSites', 'culinary', 'nightlife']
     },
     NewYork: {
         weather: [12, 24, 15, 3],
         coastal: true,
         cost: 'High',
-        purpose: ['Tourism', 'Business'],
-        experiences: {
-            entertainment: true,
-            nightlife: true,
-            culturalSites: true
-        }
+        experiences: ['entertainment', 'nightlife', 'culturalSites']
     },
     Amsterdam: {
         weather: [10, 17, 12, 4],
         coastal: false,
         cost: 'Medium',
-        purpose: ['Tourism', 'Business', 'Culture'],
-        experiences: {
-            culturalSites: true,
-            nightlife: true,
-            nature: true
-        }
+        experiences: ['culturalSites', 'nightlife', 'nature']
     },
     Seoul: {
         weather: [15, 27, 18, 3],
         coastal: false,
         cost: 'Medium',
-        purpose: ['Tourism', 'Business', 'Culture'],
-        experiences: {
-            culturalSites: true,
-            nightlife: true,
-            culinary: true
-        }
+        experiences: ['culturalSites', 'nightlife', 'culinary']
     },
     SanFrancisco: {
         weather: [14, 17, 16, 11],
         coastal: true,
         cost: 'High',
-        purpose: ['Tourism', 'Business'],
-        experiences: {
-            nature: true,
-            culturalSites: true,
-            culinary: true
-        }
+        experiences: ['nature', 'culturalSites', 'culinary']
     },
     LosAngeles: {
         weather: [18, 24, 22, 14],
         coastal: true,
         cost: 'High',
-        purpose: ['Tourism', 'Business', 'Culture'],
-        experiences: {
-            entertainment: true,
-            nightlife: true,
-            culinary: true
-        }
+        experiences: ['entertainment', 'nightlife', 'culinary']
     }
 };
 
@@ -185,20 +115,26 @@ const applyCostFilter = (key, cost) => {
     };
 }
 
-const applyPurposeFilter = (key, purpose) => {
-    console.log(typeof(cities.purpose))
-    if(cities[key].purpose.includes(purpose)) {
-        purposeMatches[key] = cities[key]
-    }
-}
-
 const applyCoastalFilter = (key, coastal) => {
-    if(cities.coastal === coastal) {
+    if(cities[key].coastal === coastal) {
         coastalMatches[key] = cities[key]
     }
 }
 
-export const MakeRecommendation = ({weather, season, cost, purpose, coastal, experiences}) => {
+const applyExperiencesFilter = (key, experiences) => {
+    let matches = 0;
+    for (let i = 0; i < experiences.length; i++) {
+        if(cities[key].experiences.includes(experiences[i])) {
+            matches++;
+        }
+    }
+    if(matches >= 3 || matches === experiences.length) {
+        experiencesMatches[key] = cities[key]
+        console.log('match')
+    }
+}
+
+export const MakeRecommendation = ({weather, season, cost, coastal, experiences}) => {
     const seasonMap = {
         Spring: 0,
         Summer: 1,
@@ -211,12 +147,11 @@ export const MakeRecommendation = ({weather, season, cost, purpose, coastal, exp
         let cityWeather = cities[key].weather[seasonIdx] // temperature of city in given season
         applyWeatherFilter(key, weather, cityWeather)
         applyCostFilter(key, cost)
-        applyPurposeFilter(key, purpose)
         applyCoastalFilter(key, coastal)
-
+        applyExperiencesFilter(key, experiences)
     });
     console.log(purposeMatches)
 }
-
-MakeRecommendation({weather: 'Mild', season: 'Summer', cost: 20, purpose: 'Business', coastal: true, experiences: ['']})
+//'culture', 'culinary', 'nightlife', 'shopping', 'nature', 'entertainment'
+MakeRecommendation({weather: 'Mild', season: 'Summer', cost: 20, coastal: true, experiences: ['culturalSites', 'culinary', 'nightlife']})
 
