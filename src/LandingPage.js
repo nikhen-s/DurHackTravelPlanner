@@ -13,21 +13,20 @@ import { PiSelectionBackgroundFill } from "react-icons/pi"
 const LandingPage = () => {
     return (
         <div id = "back">
-            <div id = "header" style = {{backgroundColor: "#09091d"}}>
+            <div id = "header" style = {{backgroundColor: "#00000f"}}>
                 <div id = "navbar">
                     <h1>DurHack Travel Planner</h1>
                 </div>
             </div>
-            <div id = "container">
-            <div id = "buttons">
+            <div id = "mid">
                 <VStack spacing = "24px">
-                    <Button _hover={{backgroundColor: "#0d1529"}} color = "white" borderRadius = "12px" variant = "ghost" size = "lg" height = "15vh"  className = "landingButton" id = "location">Location Recommendation</Button>
-                    <Button _hover={{backgroundColor: "#0d1529"}} color = "white" borderRadius = "12px" variant = "ghost" size = "lg" height = "15vh"  className = "landingButton" id = "itinerary">Itinerary Recommendation</Button>
+                    <Button _hover={{backgroundColor: "#00de93"}} color = "white" borderRadius = "12px" variant = "ghost" size = "lg" height = "15vh"  className = "landingButton" id = "location">Location Recommendation</Button>
+                    <Button _hover={{backgroundColor: "#00de93"}} color = "white" borderRadius = "12px" variant = "ghost" size = "lg" height = "15vh"  className = "landingButton" id = "itinerary">Itinerary Recommendation</Button>
                 </VStack>
             </div>
             <div id = "background">
-                <AnimatedBackground style = {{height: "100%", width: "100%", position: "bottom right"}} animationName = "galaxySpiral"/>
-            </div>
+                    <AnimatedBackground  style = {{
+                        position: "bottom right"}} animationName = "auroraBorealis"/>
             </div>
         </div>
 

@@ -1,60 +1,54 @@
+#back {
+    background-color: #00000f;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 5% auto 1fr;
+    grid-template-rows: 4% 15% 35% 1fr;
+}
+
 #header {
     width: 100%;
     text-align: center;
     color: white;
-    height: auto;
-    padding-top: 10vh;
-    padding-bottom: 5vh;
+    grid-area: 2 / 2 / span 1 / span 2;
 }
 
-#back {
-    height: 100vh;
+
+#mid {
+    background-color: #00000f;
+    grid-area: 3 / 2 / span 1 / span 1;
 }
+
+#background {
+    height: 46%;
+    grid-area: 4 / 1 / span 1 / span 3;
+}
+
 
 
 #navbar {
     text-align: center;
     margin: 0 25vw 0 25vw;
-    width: 50vw;
-    font-size: 1em;
-    background-color:#440154;
+    font-size: 1.3em;
+    background-color:#04b0c2;
     padding: 1vh;
-    border-radius: 30px;
+    border-radius: 30px 0 30px 0;
 }
 
 h1 {
     margin: 5px;
 }
 
+
 .landingButton {
     height: 120px;
     font-size: 1.2em;
-    margin: 4vw 0 0 6vw;
-    background:linear-gradient(#440154,transparent);
-    background-color:#090913;
+    background:linear-gradient(#00de93,transparent);
+    background-color:#6417f8;
 }
 
 .landingButton:hover {
-    background:linear-gradient(#090913,transparent);
-    background-color:#440154;
-    transition: 0.3s;
-}
-
-
-#buttons {
-    background-color: #09091d;
-    text-align: center;
-    width: fit-content;
-    float: left;
-    height: 100%;
-}
-
-
-#background {
-    flex-grow: 1;
-}
-
-#container {
-    height: 78.09vh;
-    display: flex;
+    background:linear-gradient(#6417f8,transparent);
+    background-color:#00de93;
+    transition: 0.2s;
 }
