@@ -4,97 +4,112 @@
         "coastal": true,
         "cost": "High",
         "experiences": ["culturalSites", "culinary", "nightlife"],
-        "description": "Tokyo is a vibrant metropolis known for its blend of traditional culture and modern innovation. This bustling city reflects its rich cultural sites, offering experiences like historic temples and contemporary art galleries, while its culinary scene showcases a variety of world-renowned dishes."
+        "description": "Tokyo is a vibrant metropolis known for its blend of traditional culture and modern innovation. This bustling city reflects its rich cultural sites, offering experiences like historic temples and contemporary art galleries, while its culinary scene showcases a variety of world-renowned dishes.",
+        "attraction": ["Senso-ji Temple", "Shibuya Crossing", "Tokyo Tower", "Tsukiji Outer Market"]
     },
     "London": {
         "weather": [10, 19, 12, 5],
         "coastal": false,
         "cost": "High",
         "experiences": ["culturalSites", "shopping", "nightlife"],
-        "description": "London is a historic city that combines royal heritage with modern attractions. Known for its cultural sites, London reflects its cosmopolitan nature through vibrant shopping districts and a lively nightlife, appealing to visitors of all interests."
+        "description": "London is a historic city that combines royal heritage with modern attractions. Known for its cultural sites, London reflects its cosmopolitan nature through vibrant shopping districts and a lively nightlife, appealing to visitors of all interests.",
+        "attraction": ["The British Museum", "Tower of London", "Buckingham Palace", "West End Theatre District"]
     },
     "Paris": {
         "weather": [12, 22, 14, 5],
         "coastal": false,
         "cost": "High",
         "experiences": ["culturalSites", "culinary", "shopping"],
-        "description": "Paris, often called the City of Light, is famous for its art, fashion, and gastronomy. This city showcases its cultural heritage through landmarks like the Eiffel Tower and offers an exquisite culinary experience, making it a top choice for food and art lovers."
+        "description": "Paris, often called the City of Light, is famous for its art, fashion, and gastronomy. This city showcases its cultural heritage through landmarks like the Eiffel Tower and offers an exquisite culinary experience, making it a top choice for food and art lovers.",
+        "attraction": ["Eiffel Tower", "Louvre Museum", "Notre-Dame Cathedral", "Montmartre"]
     },
     "Rome": {
         "weather": [15, 27, 18, 8],
         "coastal": false,
         "cost": "Medium",
         "experiences": ["culturalSites", "culinary", "nature"],
-        "description": "Rome is a historic city that dates back thousands of years, filled with iconic landmarks and rich traditions. Reflecting its cultural significance, visitors can explore ancient ruins while also enjoying delightful culinary experiences, such as authentic Italian dishes in a charming setting."
+        "description": "Rome is a historic city that dates back thousands of years, filled with iconic landmarks and rich traditions. Reflecting its cultural significance, visitors can explore ancient ruins while also enjoying delightful culinary experiences, such as authentic Italian dishes in a charming setting.",
+        "attraction": ["Colosseum", "Vatican City", "Trevi Fountain", "Roman Forum"]
     },
     "Bangkok": {
         "weather": [30, 32, 30, 26],
         "coastal": false,
         "cost": "Low",
         "experiences": ["culinary", "nightlife", "culturalSites"],
-        "description": "Bangkok is a bustling capital known for its vibrant street life and cultural landmarks. This city shines in its culinary experiences with street food galore, while its lively nightlife and rich cultural sites attract travelers seeking adventure and authenticity."
+        "description": "Bangkok is a bustling capital known for its vibrant street life and cultural landmarks. This city shines in its culinary experiences with street food galore, while its lively nightlife and rich cultural sites attract travelers seeking adventure and authenticity.",
+        "attraction": ["Grand Palace", "Wat Pho", "Chatuchak Weekend Market", "Khao San Road"]
     },
     "Singapore": {
         "weather": [27, 28, 27, 26],
         "coastal": true,
         "cost": "High",
         "experiences": ["culinary", "shopping", "entertainment"],
-        "description": "Singapore is a dynamic island city-state celebrated for its modern architecture and multicultural heritage. Known for exceptional shopping and culinary delights, it reflects a harmonious blend of tradition and innovation, making it a favorite among global tourists."
+        "description": "Singapore is a dynamic island city-state celebrated for its modern architecture and multicultural heritage. Known for exceptional shopping and culinary delights, it reflects a harmonious blend of tradition and innovation, making it a favorite among global tourists.",
+        "attraction": ["Marina Bay Sands", "Gardens by the Bay", "Chinatown", "Sentosa Island"]
     },
-    "HongKong": {
+    "Hong Kong": {
         "weather": [21, 28, 24, 16],
         "coastal": true,
         "cost": "High",
         "experiences": ["culinary", "nightlife", "shopping"],
-        "description": "Hong Kong is a vibrant city known for its skyline and harbor views. This city captures a unique fusion of Eastern and Western cultures, reflected in its delicious food, bustling shopping markets, and exciting nightlife that enchants visitors from around the world."
+        "description": "Hong Kong is a vibrant city known for its skyline and harbor views. This city captures a unique fusion of Eastern and Western cultures, reflected in its delicious food, bustling shopping markets, and exciting nightlife that enchants visitors from around the world.",
+        "attraction": ["Victoria Peak", "Tsim Sha Tsui Promenade", "Temple Street Night Market", "Hong Kong Disneyland"]
     },
     "Dubai": {
         "weather": [27, 36, 31, 21],
         "coastal": true,
         "cost": "High",
         "experiences": ["shopping", "entertainment", "culinary"],
-        "description": "Dubai is a futuristic city renowned for luxury shopping, modern architecture, and lively entertainment. The city reflects its extravagant lifestyle not only through lavish shopping malls but also through world-class dining experiences, making it a premier destination for luxury seekers."
+        "description": "Dubai is a futuristic city renowned for luxury shopping, modern architecture, and lively entertainment. The city reflects its extravagant lifestyle not only through lavish shopping malls but also through world-class dining experiences, making it a premier destination for luxury seekers.",
+        "attraction": ["Burj Khalifa", "The Dubai Mall", "Palm Jumeirah", "Desert Safari"]
     },
     "Barcelona": {
         "weather": [17, 25, 19, 11],
         "coastal": true,
         "cost": "Medium",
         "experiences": ["culturalSites", "culinary", "nightlife"],
-        "description": "Barcelona is a city characterized by its unique architecture and stylish beachside allure. It reflects the essence of coastal tourism with vibrant nightlife and exceptional culinary offerings, complemented by a rich tapestry of cultural sites to explore."
+        "description": "Barcelona is a city characterized by its unique architecture and stylish beachside allure. It reflects the essence of coastal tourism with vibrant nightlife and exceptional culinary offerings, complemented by a rich tapestry of cultural sites to explore.",
+        "attraction": ["Sagrada Familia", "Park Güell", "La Barceloneta", "Gothic Quarter"]
     },
-    "NewYork": {
+    "New York": {
         "weather": [12, 24, 15, 3],
         "coastal": true,
         "cost": "High",
         "experiences": ["entertainment", "nightlife", "culturalSites"],
-        "description": "New York is a bustling metropolis famous for its skyline, diverse culture, and vibrant nightlife. The city's urban atmosphere reflects its rich entertainment options and cultural sites, making it a hub for tourists seeking dynamic experiences."
+        "description": "New York is a bustling metropolis famous for its skyline, diverse culture, and vibrant nightlife. The city's urban atmosphere reflects its rich entertainment options and cultural sites, making it a hub for tourists seeking dynamic experiences.",
+        "attraction": ["Statue of Liberty", "Central Park", "Times Square", "Metropolitan Museum of Art"]
     },
     "Amsterdam": {
         "weather": [10, 17, 12, 4],
         "coastal": false,
         "cost": "Medium",
         "experiences": ["culturalSites", "nightlife", "nature"],
-        "description": "Amsterdam is renowned for its artistic heritage and intricate canal system. Its blend of cultural sites and natural beauty creates an inviting atmosphere for visitors looking to explore the city's history and enjoy vibrant nightlife."
+        "description": "Amsterdam is renowned for its artistic heritage and intricate canal system. Its blend of cultural sites and natural beauty creates an inviting atmosphere for visitors looking to explore the city's history and enjoy vibrant nightlife.",
+        "attraction": ["Rijksmuseum", "Van Gogh Museum", "Anne Frank House", "Vondelpark"]
     },
     "Seoul": {
         "weather": [15, 27, 18, 3],
         "coastal": false,
         "cost": "Medium",
         "experiences": ["culturalSites", "nightlife", "culinary"],
-        "description": "Seoul is a city where tradition meets modernity, characterized by its stunning palaces and bustling streets. The culinary scene and nightlife reflect the energetic culture, offering both locals and tourists a taste of Korea's rich heritage."
+        "description": "Seoul is a city where tradition meets modernity, characterized by its stunning palaces and bustling streets. The culinary scene and nightlife reflect the energetic culture, offering both locals and tourists a taste of Korea's rich heritage.",
+        "attraction": ["Gyeongbokgung Palace", "Bukchon Hanok Village", "Myeongdong Street", "N Seoul Tower"]
     },
-    "SanFrancisco": {
+    "San Francisco": {
         "weather": [14, 17, 16, 11],
         "coastal": true,
         "cost": "High",
         "experiences": ["nature", "culturalSites", "culinary"],
-        "description": "San Francisco is known for its iconic landmarks like the Golden Gate Bridge and its stunning natural landscapes, including parks and coastal views. This beautiful city combines nature with cultural experiences and excellent dining, appealing to outdoor enthusiasts and food lovers alike."
+        "description": "San Francisco is known for its iconic landmarks like the Golden Gate Bridge and its stunning natural landscapes, including parks and coastal views. This beautiful city combines nature with cultural experiences and excellent dining, appealing to outdoor enthusiasts and food lovers alike.",
+        "attraction": ["Golden Gate Bridge", "Alcatraz Island", "Fisherman's Wharf", "Chinatown"]
     },
-    "LosAngeles": {
+    "Los Angeles": {
         "weather": [18, 24, 22, 14],
         "coastal": true,
         "cost": "High",
         "experiences": ["entertainment", "nightlife", "culinary"],
-        "description": "Los Angeles is synonymous with the entertainment industry, featuring glamorous attractions and a vibrant culinary scene. Its coastal location enhances the appeal of nightlife and entertainment, with beaches that are perfect for relaxation and social activities."
+        "description": "Los Angeles is synonymous with the entertainment industry, featuring glamorous attractions and a vibrant culinary scene. Its coastal location enhances the appeal of nightlife and entertainment, with beaches that are perfect for relaxation and social activities.",
+        "attraction": ["Hollywood Walk of Fame", "Griffith Observatory", "Santa Monica Pier", "Los Angeles County Museum of Art"]
     }
+    
 }

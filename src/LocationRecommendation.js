@@ -82,10 +82,7 @@ export const MakeRecommendation = ({weather, season, cost, coastal, experiences}
         Autumn: 2,
         Winter: 3
     }
-    
-    // const [matchCountsFinal, setMatchCountsFinal] = useState({});
 
-    // useEffect(() => {
     let matchCounts = new Map();
     Object.keys(cities).forEach(key => {
         let seasonIdx = seasonMap[season];
@@ -96,13 +93,8 @@ export const MakeRecommendation = ({weather, season, cost, coastal, experiences}
         applyExperiencesFilter(key, experiences);
         matchCounts.set(key, hasWeather + hasCost + hasCoastal) /**+ hasExperience */;
     })
-    // const sortedEntries = Object.entries(matchCounts);
-    // sortedEntries.sort(([, valueA], [, valueB]) => valueB - valueA);
-    // const sortedMatchCounts = Object.fromEntries(sortedEntries);
     const sortedMatchCounts = new Map([...matchCounts.entries()].sort((a, b) => b[1] - a[1]));
-    // setMatchCountsFinal(sortedMatchCounts);
     console.log(sortedMatchCounts);
-    // }, [weather, season, cost, coastal, experiences]);
 
     return (
         <div style={{ padding: '20px' }}>
