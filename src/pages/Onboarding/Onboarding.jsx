@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, Container, Image, Box } from '@chakra-ui/react';
 import introImage from '../../assets/page1_img.gif'
-import Form from '../../components/Form/Form';
+import DestinationForm from '../../components/DestinationForm/DestinationForm';
+import ItineraryForm from '../../components/ItineraryForm/ItineraryForm';
 import './Onboarding.styles.css'
 
 // const myObj = { experiences: ['a', 'b', 'c'] };
@@ -33,7 +34,7 @@ const Onboarding = () => {
         </Box>
         <Box className='formbox-container'>
           <Box className='inner-formbox'>
-            <Form />
+            <DestinationForm />
           </Box>
         </Box>
       </Box>
