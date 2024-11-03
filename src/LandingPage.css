@@ -1,0 +1,94 @@
+@font-face {
+    font-family: 'beachFont';
+    src: url('/public/SeaweedScript-Regular.ttf');
+  }
+
+@font-face {
+    font-family: sandFont;
+    src: url('/public/SandyToesStarFish-K74KZ.ttf');
+}
+
+#back {
+    height: 90vh;
+    width: 100%;
+    background-image: linear-gradient(#ecbc4c, white, #ffffff);
+}
+
+#top {
+    margin-top: 11vw;
+    position: absolute;
+    height: 90vh;
+    width: 100%;
+}
+
+h1 {
+    font-family: beachFont;
+    text-shadow: 4px 3px 3px #DBA825EA;
+    font-size: 4em;
+}
+
+#sandText {
+    padding: 2vmin 20vmin 0 20vmin;
+    text-align: center;
+}
+
+p {
+    font-size: 2em;
+    padding-top: calc(20px + 2vmax);
+    font-family: sandFont;
+    color: #A58255;
+}
+
+h2 {
+    text-shadow: 4px 3px 3px #DBA825EA;
+    font-size: 2em;
+    font-family: beachFont;
+}
+
+#header {
+    text-align: center;
+    position: fixed;
+    top: 1vw;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    font-weight: bolder;
+}
+
+#beach {
+    padding-top: 0;
+    width: 100%;
+    height: auto;
+}
+
+#beachImage {
+    width: 100%;
+}
+
+#sand {
+    text-align: center;
+    width: 100%;
+    height: 120%;
+    background: linear-gradient(#F1E2C0, #dfbb67);
+}
+
+#buttons {
+    padding-top: 15vh;
+    text-align: center;
+}
+
+.buttonStyle {
+    padding: 5%;
+    width: auto;
+    margin: 5vw;
+}
+
+#left {
+    margin: 0 7vmin 80px 0;
+}
+
+#right {
+    margin: 90px 0 0 7vmin;
+}
