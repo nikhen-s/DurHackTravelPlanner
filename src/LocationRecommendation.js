@@ -1,5 +1,4 @@
 import cities from './CityData.json'
-import { useState, useEffect } from 'react'
 import {
     Accordion,
     AccordionItem,
@@ -47,7 +46,7 @@ const applyCostFilter = (key, cost) => {
 }
 
 const applyCoastalFilter = (key, coastal) => {
-    if(cities[key].coastal === coastal) {
+    if(cities[key].coastal == coastal) {
         coastalMatches[key] = cities[key]
         return 1;
     }
@@ -75,7 +74,7 @@ const applyExperiencesFilter = (key, experiences) => {
     // return 0;
 }
 
-export const MakeRecommendation = ({weather, season, cost, coastal, experiences}) => {
+const MakeRecommendation = ({weather, season, cost, coastal}) => {
     const seasonMap = {
         Spring: 0,
         Summer: 1,
@@ -90,7 +89,7 @@ export const MakeRecommendation = ({weather, season, cost, coastal, experiences}
         let hasWeather = applyWeatherFilter(key, weather, cityWeather);
         let hasCost = applyCostFilter(key, cost);
         let hasCoastal = applyCoastalFilter(key, coastal);
-        applyExperiencesFilter(key, experiences);
+        // applyExperiencesFilter(key, experiences);
         matchCounts.set(key, hasWeather + hasCost + hasCoastal) /**+ hasExperience */;
     })
     const sortedMatchCounts = new Map([...matchCounts.entries()].sort((a, b) => b[1] - a[1]));
@@ -134,4 +133,6 @@ export const MakeRecommendation = ({weather, season, cost, coastal, experiences}
 
 // TODO: show recommendation (showRecommendation) locations and frontend suggestions to user, Autofill itinerary, Fix hasExperience filter
 //'culture', 'culinary', 'nightlife', 'shopping', 'nature', 'entertainment'
-MakeRecommendation({weather: 'Mild', season: 'Summer', cost: 20, coastal: true, experiences: [true, true, true, false, false, false]})
+// MakeRecommendation({weather: 'Mild', season: 'Summer', cost: 20, coastal: true, experiences: [true, true, true, false, false, false]})
+
+export default MakeRecommendation;
