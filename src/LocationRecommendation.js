@@ -4,7 +4,7 @@ let weatherMatches = {}
 let costMatches = {}
 let coastalMatches = {}
 let experiencesMatches = {}
-let matchCounts = {};
+let matchCounts = new Map();
 
 const applyWeatherFilter = (key, weather, cityWeather) => {
     if(weather === 'Hot' && cityWeather <= 10) {
@@ -54,7 +54,7 @@ const applyExperiencesFilter = (key, experiences) => {
     let length = 0;
     // console.log(typeof(experiences));
     // Object.keys(experiences).forEach((index) => {
-    //     if(experiences[index] && cities[key].experiences.every(expKeys[index])) {
+    //     if(experiences[index]) {
     //         matches++;
     //     }
     //     length++;
@@ -62,7 +62,11 @@ const applyExperiencesFilter = (key, experiences) => {
     
     // if(matches >= 3 && matches === length) {
     //     experiencesMatches[key] = cities[key];
+    //     return 1;
     // }
+    // else {
+    //     return 0;
+    //}
 }
 
 export const MakeRecommendation = ({weather, season, cost, coastal, experiences}) => {
@@ -80,11 +84,21 @@ export const MakeRecommendation = ({weather, season, cost, coastal, experiences}
         let hasCost = applyCostFilter(key, cost)
         let hasCoastal = applyCoastalFilter(key, coastal)
         let hasExperience = applyExperiencesFilter(key, experiences)
-        // matchCounts.set(key, applyWeatherFilter(key, weather, cityWeather));
-        matchCounts[key] = hasWeather + hasCost + hasCoastal;
-        
-
+        matchCounts.set(key, hasWeather + hasCost + hasCoastal /**+ hasExperience */);
     });
+    const matchCountsFinal = new Map([...matchCounts.entries()].sort((k, v) => v[1] - k[1]));
+    console.log(matchCountsFinal);
+
+}
+
+export const showRecommendation = () => {
+    
+    return (
+        <div>
+            <h1>Recommendations</h1>
+            
+        </div>
+    )
 }
 
 // 1. Store locations info in a json object
@@ -93,6 +107,7 @@ export const MakeRecommendation = ({weather, season, cost, coastal, experiences}
 // 4. Count criterion matches per location
 // 5. Sort locations by match count
 // 6. Setup description for each location
-// 7. Display locations and frontend suggestions to user
+
+// TODO: show recommendation (showRecommendation) locations and frontend suggestions to user, Autofill itinerary, Fix hasExperience filter
 //'culture', 'culinary', 'nightlife', 'shopping', 'nature', 'entertainment'
 MakeRecommendation({weather: 'Mild', season: 'Summer', cost: 20, coastal: true, experiences: [true, true, true, false, false, false]})
