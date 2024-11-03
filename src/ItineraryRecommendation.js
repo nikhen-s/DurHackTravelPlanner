@@ -1,36 +1,66 @@
 import { Flex, Box, Button,Stack } from '@chakra-ui/react'
 import './ItineraryRecommendation.css';
 import axios from "axios";
-import { useState, useRef, useEffect } from 'react';
-import env from "react-dotenv";
+import { useState, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown'
-import Map, {Marker, Source, Layer} from 'react-map-gl';
+import Map, {Popup, Marker, Source, Layer,  NavigationControl,
+    FullscreenControl,
+    ScaleControl,
+    GeolocateControl} from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { FaMapMarker } from "react-icons/fa";
+import { IoIosPin } from "react-icons/io";
 
-const API_KEY = env.API_KEY || ""
-const MAPBOX_API_KEY = env.MAPBOX_API_KEY || ""
+const API_KEY = process.env.REACT_APP_LLAMA_API_KEY || ""
+const MAPBOX_API_KEY = process.env.REACT_APP_MAPBOX_API_KEY || ""
 
 
 const ItineraryRecommendationPage = () => {
 
     const [itinerary, setItinerary] = useState("");
     const [fetchedLocations, setFetchedLocations] = useState([]); // State for fetched locations
+    const [popupInfo, setPopupInfo] = useState(null);
+
+    const pins = useMemo( () => 
+        {return fetchedLocations.map(
+            (location, index) => {
+                const long = Number((location[1][0])).toFixed(3)
+                const lat = Number((location[1][1])).toFixed(3)
+
+                return (
+                <Marker key={index}
+                longitude={long}
+                latitude={lat}
+                pitchAlignment="auto" 
+                onClick={e => {
+                    // If we let the click event propagates to the map, it will immediately close the popup
+                    // with `closeOnClick: true`
+                    e.originalEvent.stopPropagation();
+                    setPopupInfo([location[0],[long,lat]]);
+                  }}
+                color='Black'
+                anchor="bottom"
+                >
+                    <IoIosPin size="20px" color='red'/>
+                </Marker>
+            )
+            }
+        )}
+    )
 
     const getItinerary = async () => {
         const url = 'https://api.together.xyz/v1/chat/completions';
         const headers = {
-            Authorization: `Bearer ${API_KEY}`, // Replace with your actual API key
+            Authorization: `Bearer ${API_KEY}`,
             'Content-Type': 'application/json',
         };
-        const city = "Spain, Barcelona";
-
+        const city = "Thailand, Bangkok";
+        
         // Data you would send
         const data = {
             model: 'meta-llama/Llama-Vision-Free',
             messages: [{
                 role: 'user',
-                content: `Generate a 1-day itinerary for ${city} including only top-rated museums, popular beaches, and famous local restaurants. At the final line, provide a list of the recommended places, ensuring to include their full names, in the following format: "| Place1, Place2, Place3 |".`
+                content: `Generate a 3-day itinerary for ${city} including only top-rated museums, popular beaches, and famous local restaurants. At the final line, provide a list of the recommended places, ensuring to include their full names, in the following format: "| Place1, Place2, Place3 |".`
             }],
         };
 
@@ -103,6 +133,10 @@ const ItineraryRecommendationPage = () => {
           style={{width: "50%", height: 700}}
           mapStyle="mapbox://styles/mapbox/streets-v9"
         >
+            <GeolocateControl position="top-left" />
+            <FullscreenControl position="top-left" />
+            <NavigationControl position="top-left" />
+            <ScaleControl />
             <Source id="my-data" type="geojson" data={{
             type: 'FeatureCollection',
             features: [
@@ -111,24 +145,20 @@ const ItineraryRecommendationPage = () => {
           }}>
                 <Layer {...layerStyle} />
             </Source>
-            {fetchedLocations.map(
-                (location, index) => {
-                    const long = Number((location[1][0])).toFixed(3)
-                    const lat = Number((location[1][1])).toFixed(3)
+            {pins}
 
-                    return (
-                    <Marker key={index}
-                    longitude={long}
-                    latitude={lat}
-                    pitchAlignment="auto" 
-                    color='Black'
-                    anchor="bottom"
-                    >
-                    <FaMapMarker size="20px" color='red'/>
-                    </Marker>
-                )
-                }
-            )}
+            {popupInfo && (
+          <Popup
+            anchor="top"
+            longitude={Number(popupInfo[1][0])}
+            latitude={Number(popupInfo[1][1])}
+            onClose={() => setPopupInfo(null)}
+          >
+            <div>
+              {popupInfo[0]}
+            </div>
+          </Popup>
+        )}
     
         </Map>
         )
