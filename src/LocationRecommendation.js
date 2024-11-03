@@ -113,13 +113,15 @@ export const MakeRecommendation = ({weather, season, cost, coastal, experiences}
                         <h2>
                             <AccordionButton _expanded={{ bg: '#D8BFD8', color: 'black' }}>
                                 <Box as='span' flex='1' textAlign='left'>
-                                    {Object.keys(cities)[index]}
+                                    {Object.keys(cities)[index]} {index < 5 ? <b><span style={{ color: 'darkgreen' }}>— Top match</span></b> : ''}
                                 </Box>
                                 <AccordionIcon />
                             </AccordionButton>
                         </h2>
-                        <AccordionPanel pb={4}>
+                        <AccordionPanel pb={5}>
                             <p><b>Description:</b> {cities[key].description}</p>
+                            <p style={{marginTop: "10px", marginBottom: "10px"}}><b>Possible Attractions:</b> {cities[key].attraction.join(', ')}</p>
+                            <img src={require(`../location_images/${key.toLowerCase().replace(/ /g, '_')}_tourist_images/${key.toLowerCase().replace(/ /g, '')}2.jpg`)} alt={`${key} tourist spot`} style={{ marginTop: '10px', borderRadius: '5px', width: '400px', height: 'auto' }} />
                         </AccordionPanel>
                     </AccordionItem>
                 ))}
