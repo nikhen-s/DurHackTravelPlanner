@@ -1,0 +1,15 @@
+.markdown-list ul,
+.markdown-list ol {
+  padding-left: 20px;
+}
+
+.markdown-list li {
+  padding-left: 10px;
+}
+
+#map {
+    height: 40%;
+    width: 100%;
+    /* temporarily set the background color so we can tell where the map container is positioned */
+    background-color: lightgrey;
+  }
