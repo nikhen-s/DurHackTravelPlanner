@@ -6,13 +6,14 @@ import LandingPage from './LandingPage';
 import { Button } from '@chakra-ui/react';
 import ItineraryRecommendationPage from './ItineraryRecommendation.js'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ItineraryForm from './ItineraryForm.js';
 function App() {
   return (
     <Router>
       <ChakraProvider>
-      <Navbar />
       <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/itineraryform" element={<ItineraryForm />} />
           <Route path="/itineraryplanner" element={<ItineraryRecommendationPage />} />
           <Route path="/onboarding" element={<Onboarding />} />
       </Routes>

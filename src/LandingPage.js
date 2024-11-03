@@ -43,7 +43,7 @@ const LandingPage = () => {
                 </div>
                 <div id = "buttons">
                     <Button boxShadow = "dark-lg" _hover = {{background: "white", color: "#79513E", boxShadow: "xs"}} bgGradient = "radial(#E4DAC6, #EEEDE9)" border = "8px solid #79513E" colorScheme="white" style = {{borderRadius: "200%", fontSize: "3vmin", height: "25vw", width: "25vw"}} className = "buttonStyle" id = "left" onClick ={() => window.location.href = "/location"}>🌴Location🌴<br></br> Advice</Button>
-                    <Button boxShadow = "dark-lg" _hover = {{background: "white", color: "#79513E", boxShadow: "xs"}} bgGradient = "radial(#E4DAC6, #EEEDE9)" colorScheme="white" border = "8px solid #79513E" style = {{borderRadius: "200%", fontSize: "3vmin", height: "25vw", width: "25vw"}} className = "buttonStyle" id = "right" onClick ={() => window.location.href = "/itineraryplanner"}>✈️Itinerary✈️<br></br> Advice</Button>
+                    <Button boxShadow = "dark-lg" _hover = {{background: "white", color: "#79513E", boxShadow: "xs"}} bgGradient = "radial(#E4DAC6, #EEEDE9)" colorScheme="white" border = "8px solid #79513E" style = {{borderRadius: "200%", fontSize: "3vmin", height: "25vw", width: "25vw"}} className = "buttonStyle" id = "right" onClick ={() => window.location.href = "/itineraryform"}>✈️Itinerary✈️<br></br> Advice</Button>
                 </div>
                 </div>
             </div>

@@ -1,5 +1,8 @@
-import { Flex, Box, Button,Stack } from '@chakra-ui/react'
+import { Text, Flex, Box, Button,Stack, Spacer } from '@chakra-ui/react'
+import { useLocation } from 'react-router-dom';
+import { Spinner } from '@chakra-ui/react'
 import './ItineraryRecommendation.css';
+import { Slide } from 'react-slideshow-image';
 import axios from "axios";
 import { useState, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown'
@@ -9,15 +12,41 @@ import Map, {Popup, Marker, Source, Layer,  NavigationControl,
     GeolocateControl} from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { IoIosPin } from "react-icons/io";
+import 'react-slideshow-image/dist/styles.css'
 
 const API_KEY = process.env.REACT_APP_LLAMA_API_KEY || ""
-const MAPBOX_API_KEY = process.env.REACT_APP_MAPBOX_API_KEY || ""
+const MAPBOX_API_KEY = process.env.REACT_APP_MAPBOX_API_KEY|| ""
+const REACT_APP_PEXELS_API_KEY = process.env.REACT_APP_PEXELS_API_KEY || ""
+
+const spanStyle = {
+    padding: '20px',
+    background: '#efefef',
+    color: '#000000'
+  }
+  
+  const divStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundSize: 'cover',
+    height: '400px'
+  }
 
 
 const ItineraryRecommendationPage = () => {
-
+    // const city = "UK, London";
+    // const numOfDays = 1;
+    // const places = ["Beaches", "Cultural sites"]
+    const { search } = useLocation();
+    const queryParams = new URLSearchParams(search);
+    const city = queryParams.get('city');
+    const numOfDays = queryParams.get('numOfDays');
+    let places = queryParams.get('places');
+    const decoded_places = [decodeURIComponent(places)];
+    const [isLoading, setLoading] = useState(true)
     const [itinerary, setItinerary] = useState("");
     const [fetchedLocations, setFetchedLocations] = useState([]); // State for fetched locations
+    const [fetchedLocationPhotos, setFetchedLocationPhotos] = useState([])
     const [popupInfo, setPopupInfo] = useState(null);
 
     const pins = useMemo( () => 
@@ -53,14 +82,14 @@ const ItineraryRecommendationPage = () => {
             Authorization: `Bearer ${API_KEY}`,
             'Content-Type': 'application/json',
         };
-        const city = "Thailand, Bangkok";
-        
+        const places_with_famous = decoded_places.map((place) => `Famous ${place}`)
+        const placesString = places_with_famous.join(", ");
         // Data you would send
         const data = {
             model: 'meta-llama/Llama-Vision-Free',
             messages: [{
                 role: 'user',
-                content: `Generate a 3-day itinerary for ${city} including only top-rated museums, popular beaches, and famous local restaurants. At the final line, provide a list of the recommended places, ensuring to include their full names, in the following format: "| Place1, Place2, Place3 |".`
+                content: `Generate a ${numOfDays}-day itinerary for ${city} including only ${placesString}. At the final line, provide a list of the recommended places, ensuring to include their full names, in the following format: "| Place1, Place2, Place3 |".`
             }],
         };
 
@@ -75,11 +104,36 @@ const ItineraryRecommendationPage = () => {
             setItinerary(responseText); // Store the itinerary
             const fetchedLocationsData = await fetchLocations(placesArray);
             setFetchedLocations(fetchedLocationsData.filter(location => location)); // Store the fetched locations, filtering out null values
-
+            const fetchedImagesOfLocations = await fetchImagesOfLocations(placesArray);
+            const uniqueImages = [...new Set(fetchedImagesOfLocations)]; // Remove duplicates
+            setFetchedLocationPhotos(uniqueImages);
         } catch (error) {
             console.error('Error making the request:', error);
         }
     };
+    getItinerary().then(
+        () => {
+            setLoading(false)
+        }
+    )
+    const fetchImagesOfLocations = async (locations) => {
+        return await Promise.all(locations.map(async (location) => {
+            const url = `https://api.pexels.com/v1/search?query=${location}&per_page=1`
+            try{
+                const response = await axios.get(url,{
+                    headers: {
+                        'Authorization': REACT_APP_PEXELS_API_KEY
+                    }
+                });
+                const image_src = response.data["photos"][0]["src"]["original"]
+                console.log(image_src)
+                return image_src
+            }catch (error) {
+                console.error('Error fetching image:', error);
+            }
+        }))
+    }
+
 
     const fetchLocations = async (locations) => {
         return await Promise.all(locations.map(async (location) => {
@@ -130,7 +184,7 @@ const ItineraryRecommendationPage = () => {
             <Map
           mapboxAccessToken={MAPBOX_API_KEY}
           initialViewState={viewport}
-          style={{width: "50%", height: 700}}
+          style={{width: "100%", height: 900}}
           mapStyle="mapbox://styles/mapbox/streets-v9"
         >
             <GeolocateControl position="top-left" />
@@ -166,15 +220,49 @@ const ItineraryRecommendationPage = () => {
     //display Map only after get requests, etc are done.
     return (
         <>
-        <Stack p="5">
-            <Button onClick={getItinerary}>Generate Itinerary</Button>
+        {
+            (isLoading || fetchedLocations.length==0)&& 
+            <Stack justifyContent="center" alignItems="center">
+                <Spacer></Spacer>
+                <Spacer></Spacer>
+                <Spinner size="xl"/>
+            </Stack>
+            
+        }
+        {
+            !isLoading && fetchedLocations.length > 0 && fetchedLocationPhotos.length > 0 &&
+                <Stack p="5">
+            <Text align={"center"}><strong>Itinerary for {city}</strong></Text>
             <Flex direction={"row"}>
                 <Box className="markdown-list" borderWidth="1px" rounded="md" p="5" flex="1">
                     <ReactMarkdown children ={itinerary}></ReactMarkdown>
                 </Box>
-                {fetchedLocations.length > 0 && <LocationMap flex="1" fetchedLocations={fetchedLocations} />}
+                <Stack flex="1" width={"100%"}>
+                    {fetchedLocations.length > 0 && <LocationMap flex="1" fetchedLocations={fetchedLocations} />}
+                </Stack>
             </Flex>
+            <Text align={"center"} borderWidth="1px" rounded="md" p="2" backgroundColor={"purple.100"}><strong>Your Travel Vibes</strong></Text>
+            <div className="slide-container">
+                <Slide>
+                {fetchedLocationPhotos.map((slideImage, index)=> (
+                    <div key={index}>
+
+                    <div style={{ ...divStyle, 'backgroundImage': `url(${slideImage.url})` }}>
+                    {fetchedLocationPhotos.map((photo_src, index) => (
+                        <img 
+                            key={index} 
+                            src={photo_src} 
+                            style={{ width: "50%", borderRadius: "8px"}} // Ensures images are responsive within their grid cells
+                            alt={`Location ${index}`}
+                        />
+                    ))}
+                    </div>
+                    </div>
+                ))} 
+                </Slide>
+            </div>
         </Stack>
+    }
         </>
     )
 }
