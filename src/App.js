@@ -1,22 +1,18 @@
 import './App.css';
 import { ChakraProvider } from '@chakra-ui/react'
-<<<<<<< HEAD
+import Onboarding from './pages/Onboarding/Onboarding';
+import Navbar from './components/Navbar/Navbar';
 import LandingPage from './LandingPage';
-=======
 import { Button } from '@chakra-ui/react';
 import ItineraryRecommendationPage from './ItineraryRecommendation.js'
 
->>>>>>> main
 function App() {
   return (
     <ChakraProvider>
-    <div className="App">
-<<<<<<< HEAD
+      <Navbar />
+      <Onboarding />
+      <ItineraryRecommendationPage />
       <LandingPage />
-=======
-      <ItineraryRecommendationPage></ItineraryRecommendationPage>
->>>>>>> main
-    </div>
     </ChakraProvider>
   );
 }
