@@ -22,30 +22,30 @@ const Form = () => {
     setNextEl(true);
   }
 
-  const isLastStep = () => {
-    return activeStep === totalSteps() - 1
-  }
+  // const isLastStep = () => {
+  //   return activeStep === totalSteps() - 1
+  // }
 
-  const handleNext = () => {
-    const newActiveStep =
-      isLastStep() && !allStepsCompleted()
-        ? // It's the last step, but not all steps have been completed
-          // find the first step that has been completed
-          steps.findIndex((step, i) => !completed.has(i))
-        : activeStep + 1
+  // const handleNext = () => {
+  //   const newActiveStep =
+  //     isLastStep() && !allStepsCompleted()
+  //       ? // It's the last step, but not all steps have been completed
+  //         // find the first step that has been completed
+  //         steps.findIndex((step, i) => !completed.has(i))
+  //       : activeStep + 1
 
-    setActiveStep(newActiveStep)
-  }
+  //   setActiveStep(newActiveStep)
+  // }
 
-  const handleBack = () => {
-    if (activeStep !== -1) {
-      setActiveStep((currentStep) => currentStep - 1)
-    }
-  }
+  // const handleBack = () => {
+  //   if (activeStep !== -1) {
+  //     setActiveStep((currentStep) => currentStep - 1)
+  //   }
+  // }
 
-  const allStepsCompleted = () => {
-    return completedSteps() === totalSteps() - skippedSteps()
-  }
+  // const allStepsCompleted = () => {
+  //   return completedSteps() === totalSteps() - skippedSteps()
+  // }
 
 
   return (
