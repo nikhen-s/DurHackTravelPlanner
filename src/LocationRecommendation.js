@@ -108,10 +108,10 @@ export const MakeRecommendation = ({weather, season, cost, coastal, experiences}
         <div style={{ padding: '20px' }}>
             <h1 style={{ fontSize: '2em', marginBottom: '20px' }}><b>Location Recommendations</b></h1>
             <Accordion>
-                {Array.from(sortedMatchCounts.entries()).map(([key, value], index) => (
+                {Array.from(sortedMatchCounts.entries()).map(([key], index) => (
                     <AccordionItem key={index}>
                         <h2>
-                            <AccordionButton>
+                            <AccordionButton _expanded={{ bg: '#D8BFD8', color: 'black' }}>
                                 <Box as='span' flex='1' textAlign='left'>
                                     {Object.keys(cities)[index]}
                                 </Box>
@@ -126,6 +126,7 @@ export const MakeRecommendation = ({weather, season, cost, coastal, experiences}
             </Accordion>
         </div>
     )
+    
 
 }
 
