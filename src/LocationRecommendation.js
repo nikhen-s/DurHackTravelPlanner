@@ -105,8 +105,8 @@ export const MakeRecommendation = ({weather, season, cost, coastal, experiences}
     // }, [weather, season, cost, coastal, experiences]);
 
     return (
-        <div>
-            <h1><b>Recommendations</b></h1>
+        <div style={{ padding: '20px' }}>
+            <h1 style={{ fontSize: '2em', marginBottom: '20px' }}><b>Location Recommendations</b></h1>
             <Accordion>
                 {Array.from(sortedMatchCounts.entries()).map(([key, value], index) => (
                     <AccordionItem key={index}>
