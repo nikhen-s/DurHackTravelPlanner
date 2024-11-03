@@ -1,10 +1,18 @@
 import cities from './CityData.json'
+import { useState, useEffect } from 'react'
+import {
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+    Box,
+  } from '@chakra-ui/react'
 
 let weatherMatches = {}
 let costMatches = {}
 let coastalMatches = {}
 let experiencesMatches = {}
-let matchCounts = new Map();
 
 const applyWeatherFilter = (key, weather, cityWeather) => {
     if(weather === 'Hot' && cityWeather <= 10) {
@@ -43,7 +51,7 @@ const applyCoastalFilter = (key, coastal) => {
         coastalMatches[key] = cities[key]
         return 1;
     }
-    else{
+    else {
         return 0;
     }
 }
@@ -64,9 +72,7 @@ const applyExperiencesFilter = (key, experiences) => {
     //     experiencesMatches[key] = cities[key];
     //     return 1;
     // }
-    // else {
-    //     return 0;
-    //}
+    // return 0;
 }
 
 export const MakeRecommendation = ({weather, season, cost, coastal, experiences}) => {
@@ -77,29 +83,52 @@ export const MakeRecommendation = ({weather, season, cost, coastal, experiences}
         Winter: 3
     }
     
+    // const [matchCountsFinal, setMatchCountsFinal] = useState({});
+
+    // useEffect(() => {
+    let matchCounts = new Map();
     Object.keys(cities).forEach(key => {
-        let seasonIdx = seasonMap[season]
-        let cityWeather = cities[key].weather[seasonIdx] // temperature of city in given season
-        let hasWeather = applyWeatherFilter(key, weather, cityWeather)
-        let hasCost = applyCostFilter(key, cost)
-        let hasCoastal = applyCoastalFilter(key, coastal)
-        let hasExperience = applyExperiencesFilter(key, experiences)
-        matchCounts.set(key, hasWeather + hasCost + hasCoastal /**+ hasExperience */);
-    });
-    const matchCountsFinal = new Map([...matchCounts.entries()].sort((k, v) => v[1] - k[1]));
-    console.log(matchCountsFinal);
+        let seasonIdx = seasonMap[season];
+        let cityWeather = cities[key].weather[seasonIdx]; // temperature of city in given season
+        let hasWeather = applyWeatherFilter(key, weather, cityWeather);
+        let hasCost = applyCostFilter(key, cost);
+        let hasCoastal = applyCoastalFilter(key, coastal);
+        applyExperiencesFilter(key, experiences);
+        matchCounts.set(key, hasWeather + hasCost + hasCoastal) /**+ hasExperience */;
+    })
+    // const sortedEntries = Object.entries(matchCounts);
+    // sortedEntries.sort(([, valueA], [, valueB]) => valueB - valueA);
+    // const sortedMatchCounts = Object.fromEntries(sortedEntries);
+    const sortedMatchCounts = new Map([...matchCounts.entries()].sort((a, b) => b[1] - a[1]));
+    // setMatchCountsFinal(sortedMatchCounts);
+    console.log(sortedMatchCounts);
+    // }, [weather, season, cost, coastal, experiences]);
 
-}
-
-export const showRecommendation = () => {
-    
     return (
         <div>
-            <h1>Recommendations</h1>
-            
+            <h1><b>Recommendations</b></h1>
+            <Accordion>
+                {Array.from(sortedMatchCounts.entries()).map(([key, value], index) => (
+                    <AccordionItem key={index}>
+                        <h2>
+                            <AccordionButton>
+                                <Box as='span' flex='1' textAlign='left'>
+                                    {Object.keys(cities)[index]}
+                                </Box>
+                                <AccordionIcon />
+                            </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                            <p><b>Description:</b> {cities[key].description}</p>
+                        </AccordionPanel>
+                    </AccordionItem>
+                ))}
+            </Accordion>
         </div>
     )
+
 }
+
 
 // 1. Store locations info in a json object
 // 2. Take input from form
