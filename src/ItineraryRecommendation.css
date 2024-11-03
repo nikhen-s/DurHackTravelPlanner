@@ -7,7 +7,7 @@
   padding-left: 10px;
 }
 
-#map-container {
+#map {
     height: 40%;
     width: 100%;
     /* temporarily set the background color so we can tell where the map container is positioned */
