@@ -1,13 +1,12 @@
 import './App.css';
 import { ChakraProvider } from '@chakra-ui/react'
-import { Button } from '@chakra-ui/react';
+import Onboarding from './pages/Onboarding/Onboarding';
+import Navbar from './components/Navbar/Navbar';
 function App() {
   return (
     <ChakraProvider>
-    <div className="App">
-      <p>Welcome to Durhack Team SlowPumaSomething</p>
-      <Button>I am a Chakra UI Button</Button>
-    </div>
+      <Navbar />
+      <Onboarding />
     </ChakraProvider>
   );
 }
