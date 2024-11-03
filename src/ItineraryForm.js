@@ -53,7 +53,7 @@ import {
             mt={4}
             colorScheme='teal'
             type='submit'
-            onClick={() => window.location.href = `/itineraryplanner?city=${locationInput}&numOfDays=${durationOfTripInput}&places=${typesOfExperiencesInput}`}
+            onClick={() => window.location.href = `/itineraryplanner?city=${locationInput}&numOfDays=${durationOfTripInput}&places=[${typesOfExperiencesInput}]`}
           >
             Submit
           </Button>
